@@ -1,0 +1,52 @@
+<!-- entradas-digitales.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tus Entradas Digitales</title>
+    <style>
+        .entrada {
+            border: 1px solid #ddd;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .qr-code {
+            text-align: center;
+            margin: 15px 0;
+        }
+        .detalles {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+<h1>Tus Entradas para el Cine</h1>
+<p>¡Gracias por tu compra! Aquí están tus entradas digitales:</p>
+
+<div th:each="entrada : ${entradas}" class="entrada">
+    <h2 th:text="${entrada.tituloPelicula}">Título de la Película</h2>
+
+    <div class="detalles">
+        <p><strong>Fecha y hora:</strong> <span th:text="${#temporals.format(entrada.fechaProyeccion, 'dd/MM/yyyy HH:mm')}">01/01/2024 20:00</span></p>
+        <p><strong>Sala:</strong> <span th:text="${entrada.nombreSala}">Sala 1</span></p>
+        <p><strong>Asiento:</strong> <span th:text="${entrada.asientoCompleto}">A1</span></p>
+        <p><strong>Formato:</strong> <span th:text="${entrada.formato}">2D</span></p>
+    </div>
+
+    <div class="qr-code">
+        <img th:src="'cid:qr-code-' + ${entryStat.index}" alt="Código QR de entrada">
+        <p>Muestra este código QR en la entrada del cine</p>
+    </div>
+</div>
+
+<div class="notas">
+    <h3>Notas importantes:</h3>
+    <ul>
+        <li>Llega con al menos 15 minutos de anticipación</li>
+        <li>Estas entradas son personales e intransferibles</li>
+        <li>En caso de cualquier problema, contacta a atención al cliente</li>
+    </ul>
+</div>
+</body>
+</html>

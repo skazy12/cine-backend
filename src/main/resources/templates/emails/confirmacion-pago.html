@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmación de Pago</title>
+</head>
+<body>
+<h1>¡Pago Confirmado!</h1>
+
+<p>Tu pago ha sido procesado exitosamente. Aquí están los detalles de tu compra:</p>
+
+<div class="detalles-compra">
+    <p><strong>Fecha de compra:</strong> <span th:text="${fechaCompra}">01/01/2024 20:00</span></p>
+    <p><strong>Monto total:</strong> <span th:text="${montoTotal}">S/. 0.00</span></p>
+</div>
+
+<div class="entradas">
+    <h2>Entradas adquiridas:</h2>
+    <div th:each="entrada : ${entradas}" class="entrada">
+        <p><strong>Película:</strong> <span th:text="${entrada.tituloPelicula}">Título</span></p>
+        <p><strong>Función:</strong> <span th:text="${#temporals.format(entrada.fechaProyeccion, 'dd/MM/yyyy HH:mm')}">01/01/2024 20:00</span></p>
+        <p><strong>Asiento:</strong> <span th:text="${entrada.asientoCompleto}">A1</span></p>
+    </div>
+</div>
+
+<p>Te hemos enviado otro correo con tus entradas digitales.</p>
+</body>
+</html>

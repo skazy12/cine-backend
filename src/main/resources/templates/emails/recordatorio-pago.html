@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recordatorio de Pago Pendiente</title>
+    <style>
+        .urgente {
+            color: #cc0000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>¡No olvides completar tu pago!</h1>
+
+<p>Tu reserva para <strong th:text="${nombrePelicula}">la película</strong> está pendiente de pago.</p>
+
+<div class="detalles">
+    <p><strong>Monto pendiente:</strong> <span th:text="${montoPendiente}">S/. 0.00</span></p>
+    <p class="urgente">
+        La reserva expirará el:
+        <span th:text="${fechaExpiracion}">01/01/2024 20:00</span>
+    </p>
+</div>
+
+<div class="instrucciones">
+    <h3>Para completar tu pago:</h3>
+    <ol>
+        <li>Ingresa a tu cuenta en nuestro sitio web</li>
+        <li>Ve a la sección "Mis Reservas"</li>
+        <li>Selecciona la reserva pendiente</li>
+        <li>Completa el pago con tu método preferido</li>
+    </ol>
+</div>
+</body>
+</html>

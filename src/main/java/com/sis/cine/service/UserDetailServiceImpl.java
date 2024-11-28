@@ -61,8 +61,13 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     public String loginUser(String email, String password) {
         try {
-            Authentication authentication = this.authenticate(email, password);
-            return jwtUtils.createToken(authentication);
+            Authentication authentication = authenticate(email, password);
+
+            // Obtener el usuario y su ID
+            Usuario usuario = usuarioRepository.findByEmail(email)
+                    .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+
+            return jwtUtils.createToken(authentication, usuario.getId());
         } catch (BadCredentialsException e) {
             throw new InvalidCredentialsException(e.getMessage());
         }

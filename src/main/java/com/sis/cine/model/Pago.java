@@ -17,16 +17,22 @@ public class Pago {
     @JoinColumn(name = "reserva_id", nullable = false)
     private Reserva reserva;
 
-    @ManyToOne
-    @JoinColumn(name = "metodo_pago_id", nullable = false)
-    private MetodoPago metodoPago;
-
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal monto;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private LocalDateTime fechaPago;
 
+    // Nuevos campos para QR
     @Column(nullable = false)
-    private String estado;
+    private LocalDateTime fechaGeneracion;
+
+    @Column(nullable = false)
+    private LocalDateTime fechaExpiracion;
+
+    @Column(name = "datos_qr", columnDefinition = "TEXT", nullable = false)
+    private String datosQr;
+
+    @Column(name = "estado_pago", length = 25, nullable = false)
+    private String estadoPago;
 }

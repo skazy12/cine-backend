@@ -30,6 +30,12 @@ public class Pelicula {
     @Column(nullable = false)
     private String poster;
 
+    @Column(nullable = true)
+    private String genero;
+
+    @Column(nullable = true)
+    private String clasificacion;
+
     @Column(name = "enproyeccion", nullable = false)
     private Boolean enProyeccion;
 }

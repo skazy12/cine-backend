@@ -30,7 +30,5 @@ public class Usuario {
     @Column(nullable = true)
     private Long tlfn;
 
-    // Nuevo campo para el departamento (antes en Administrador)
-    @Column(nullable = true)
-    private String departamento;
+
 }

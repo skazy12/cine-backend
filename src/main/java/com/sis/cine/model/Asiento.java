@@ -15,8 +15,8 @@ public class Asiento {
     @Column(nullable = false, length = 1)
     private String fila;
 
-    @Column(nullable = false, length = 1)
-    private String letra;
+    @Column(nullable = false, length = 2)
+    private String numero;
 
     @ManyToOne
     @JoinColumn(name = "sala_id", nullable = false)
