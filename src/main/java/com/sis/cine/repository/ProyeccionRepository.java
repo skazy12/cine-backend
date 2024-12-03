@@ -1,5 +1,6 @@
 package com.sis.cine.repository;
 
+import com.sis.cine.dto.SalaProgramadaDTO;
 import com.sis.cine.model.Proyeccion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -104,4 +105,9 @@ public interface ProyeccionRepository extends JpaRepository<Proyeccion, Long> {
             @Param("horaInicio") String horaInicio,
             @Param("horaFin") String horaFin
     );
+
+    @Query("SELECT new com.sis.cine.dto.SalaProgramadaDTO(p.sala.id, p.sala.nombre, p.dia, p.comienzo) " +
+            "FROM Proyeccion p " +
+            "WHERE p.dia >= CURRENT_DATE")
+    List<SalaProgramadaDTO> obtenerSalasConProyecciones();
 }
